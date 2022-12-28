@@ -1,0 +1,21 @@
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: ./Frontend/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  backend:
+    build: 
+      context: .
+      dockerfile: ./Backend/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=dev
+      - MONGO_DB_CONNECTION_STRING=mongodb+srv://backend:c8Vf3caTQTd1u1Ew@cloudprojectdb.usgnr.mongodb.net/?retryWrites=true&w=majority
+      - MONGO_DB_NAME=CloudProjectDB
+      - REDIS_URI=redis://redis:6379
